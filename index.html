@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/main.css">
+    <script src="preload.js"></script>
+    <script src="./assets/password-generator/passwordGenerator.js" defer></script>
+    
+    <title>Password generator</title>
+</head>
+<body class="preload">
+    <!-- <header class="header"></header> -->
+    <div class="container password-generator">
+        <h1>Password generator</h1>
+        <p class="text" >Create strong and secure password that will keep your data safe</p>
+
+        <div class="password-generator__block output border" id="password-generator__block">
+            <p class="generated-password" id="generated-password">password</p>
+        </div>
+        <div class="password-generator__block">
+            <div class="charset">
+                <div class="charset__item charset__checkboxes noselect">
+                    <label class="charset__checkbox" for="a-z">
+                        <input 
+                            class="a-z" 
+                            type="checkbox" 
+                            name="charset" 
+                            id="a-z"
+                            value="abcdefghijklmnopqrstuvwxyz"
+                            checked>
+                            a-z
+                    </label>
+                    <label class="charset__checkbox" for="A-Z">
+                        <input 
+                            class="A-Z" 
+                            type="checkbox" 
+                            name="charset" 
+                            id="A-Z"
+                            value="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                            checked>
+                            A-Z
+                    </label>
+                    <label class="charset__checkbox" for="0-9">
+                        <input 
+                            class="0-9" 
+                            type="checkbox" 
+                            name="charset" 
+                            id="0-9"
+                            value="0123456789"
+                            checked>
+                            0-9
+                    </label>
+                    <label class="charset__checkbox" for="!@#$%^&*">
+                        <input 
+                            class="!@#$%^&*" 
+                            type="checkbox" 
+                            name="charset" 
+                            id="!@#$%^&*"
+                            value="!@#$%^&*"
+                            checked>
+                            !@#$%^&*
+                    </label>
+                </div>
+                <div class="charset__item charset__length-block">
+                    <div class="charset__length-descripron small-text">Password length: <output id="password-length">8</output></div>
+                    <input 
+                        class="charset__length" 
+                        id="input-length"
+                        type="range"
+                        min="8"
+                        max="32"
+                        value="8"
+                        >
+                </div>
+                <div class="charset__item regenerate">
+                    <button class="regenerate__button" id="regenerate__button">Regenerate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
