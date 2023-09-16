@@ -8,7 +8,14 @@ const checkbox = document.querySelector("input[type='checkbox'][name='charset']"
 const regenerateButton = document.getElementById("regenerate__button");
 
 
-let passwordBuffer = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+const charset = [
+    "abcdefghijklmnopqrstuvwxyz",
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "0123456789",
+    "!@#$%^&*()"
+];
+
+let passwordBuffer = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
 
 function generatePassword(length, buffer) {
     let newPassword = "";
@@ -29,7 +36,12 @@ function generatePassword(length, buffer) {
 passwordBlock.addEventListener("click", () => {
     var copyText = document.getElementById("generated-password");
     navigator.clipboard.writeText(copyText.innerHTML);
-    alert("Password copied to clipboard");
+
+    // add class copied
+    passwordBlock.setAttribute("id", "copied");
+    setTimeout(() => {
+        passwordBlock.removeAttribute("id", "copied");
+    }, 200);
 });
 
 
@@ -46,13 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
         checkbox.addEventListener('change', function(event)
         {
             if (event.target.checked) {
-                passwordBuffer += event.target.value;
+                passwordBuffer += charset[event.target.value];
                 generatePassword(passwordLength.textContent, passwordBuffer);
             }
             else {
-                passwordBuffer = passwordBuffer.replace(event.target.value, "");
+                passwordBuffer = passwordBuffer.replace(charset[event.target.value], "");
                 generatePassword(passwordLength.textContent, passwordBuffer);
             }
+
+            console.log(charset[event.target.value]);
         });
     }
 }, false);
